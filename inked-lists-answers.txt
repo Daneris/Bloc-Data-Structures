@@ -1,0 +1,222 @@
+### Exercises
+
+>For exercises requiring code, you are free to use the language of your choice.
+
+Give written answers for each question and put them in  `linked-lists-answers.txt`:
+
+>1.  What are some pros and cons of using linked lists instead of arrays?
+
+Linked lists save information quickly. However it is slow in terms of searching because you always need to start at the head node. So if whatever you are looking for is right in the middle of a huge linked list it will take a long time to find it.
+
+While with arrays searching is fast but large arrays take up much more memory than linked lists.
+
+
+>2.  Come up with a real world example of a linked list.
+
+A doubly linked-list is very much like the Next, fast-forward, and skip.
+    
+    ### Programming Questions
+    
+    You may program the following questions in any language of your choice (JavaScript, Ruby, etc.).
+    
+
+Before beginning to code, write out a plan explaining how to solve the question.
+
+>1. The linked list `push` function should take a value, create a node, and add it to the end of a list. Below is pseudocode for a `push` function for a singly linked list. However, there is something wrong with it. Submit both an explanation of the bug and a functional implementation of the method.
+
+Everything is fine in the first section of the pseudo code. The first IF statement also makes sense, if there is NO head node, which means that the list is completely blank because there is always a head node otherwise. Then set set this.head to the new node being created.
+
+ELSE if there IS a head node, then set the current node, to this.head.  It looks like this would set the new node, to be next to the head node. This function is supposed to add it to the end. It would only work correctly if the head node doesn't exist.
+
+Included an implementation of push in the Answers section.
+
+```
+FUNCTION push(element)
+CREATE node
+SET node.value TO element
+SET node.next TO null
+
+IF the head node does not exist
+ THEN SET head to node
+ELSE
+ SET current to head
+ SET current.next to node
+END IF
+END FUNCTION
+
+```
+
+
+
+>Given an unsorted singly linked list, remove all duplicates from the linked list.
+Example
+
+```
+Input: a -> c -> d -> d -> a
+Output: a -> c -> d
+```
+
+Answer below.
+
+>Given an unsorted singly linked list, reverse it.
+Example
+
+```
+Input: a -> b -> c -> d
+Output: d -> c -> b -> a
+```
+Answer below.
+
+
+
+**
+
+## Answers
+
+**
+
+```
+ class Node {
+   constructor(data, next = null) {
+     this.data = data;
+     this.next = next;
+     
+   }
+ }
+
+
+
+ class LinkedList{
+   constructor() {
+     this.head = null;
+   }
+
+
+   insertFirst(data) {
+     const node = new Node(data, this.head);
+      this.head = node;
+   }
+
+
+   getLast() {
+     if(!this.head) {
+       return null;
+     }
+     var node = this.head;
+     while(node) {
+       if (!node.next) {
+            return node;
+          }
+       node = node.next;
+      }
+   }
+
+
+   push(data) {
+     var last = this.getLast();
+
+     if (last) {
+       last.next = new Node(data);     
+     }else {
+       this.head = new Node(data);
+     }
+   }
+
+
+
+  removeDuplicates() {
+      let current = this.head;
+        while(current != null) {
+            let nextNode = current;
+            while(nextNode.next != null) {
+                if(current.data == nextNode.next.data) {
+                    nextNode.next = nextNode.next.next;
+                    
+                } else {
+                    nextNode = nextNode.next;
+                }
+            }
+            current = current.next;
+        }    
+ 
+        
+    }
+
+    reverse() {
+      let current = this.head;
+      let previous = null;
+
+      while(current) {
+        
+        // var next to the node that is attached to the next prop of the current node
+        var next = current.next;
+
+        // set the next property of the current node to previous
+        current.next = previous;
+
+        //set the previous node to current
+        previous = current;
+
+        // setting current to next
+        current = next;
+
+        }
+        
+        this.head = previous; 
+    
+    
+    };
+
+
+     print() {
+      var current = this.head;
+      while(current) {
+        console.log(current.data);
+        current = current.next
+      }
+
+    };
+
+
+
+ }
+
+
+ var list = new LinkedList();
+
+list.push(1);
+list.push(2);
+list.push(3);
+list.push(4);
+list.push(5);
+list.push(1);
+list.push(2);
+list.push(3);
+list.push(4);
+list.push(5);
+list.push(22);
+list.push(44);
+list.push(44);
+list.push(22);
+list.push(2);
+list.push(44);
+list.push(10);
+list.push(10);
+
+
+
+
+//list.print()
+//list.reverse();
+//console.log(list)
+//list.print()
+list.removeDuplicates()
+list.print()
+
+//list.reverse()
+
+//list.reverse();
+//list.print();
+
+
+```
