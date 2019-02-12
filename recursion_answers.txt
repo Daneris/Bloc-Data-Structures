@@ -1,0 +1,73 @@
+
+1.  Define and compare recursion and iteration.
+
+Iteration is when you use a loop to repeat some process. Recursion is when a function calls itself, each time breaking down the problem further. Until a base case is meant which triggers the loop to end.
+
+Both iteration and recursion need a base case. Otherwise the loops would continue until the program crashes.
+
+When using iteration the function doesn't call itself. It goes through a collection one by one performing whatever processes are defined.
+
+
+2.  Name five algorithms that are commonly implemented by recursion.
+
+Binary search, merge sort, quick, breadth first and depth first traversal on trees.
+
+3.  When should you use recursion, and when should you avoid recursion? Give examples for each.
+
+
+Recursion makes sense to use when a problem can be broken down into smaller pieces. Also when it will Not be called with large arguments that may cause the program to crash. A popular function to write recursively is calculating factorials.
+
+Getting the max number when done recursively is an example of a function that is cleaner and simpler done iteratively.
+
+
+
+
+
+4.  Compare the recursive and iterative solutions to the three algorithms from the checkpoint (`factorial`,  `maximum`, and  `fibonacci`). What is similar, and what is different?
+
+In some cases the iterative version is shorter than the recursive one. The find max number in collection is shorter and cleaner done iteratively than the recursive version. However, the fibonacci function is cleaner in the recursive version.
+
+Recursive functions sometimes present an issue with performance due to it sometimes requiring a repetition of calculations.
+
+
+
+
+5.  Given a multi-dimensional collection (such as an array) where the number of dimensions is unknown, write a recursive algorithm to count the number of items in the entire collection.
+
+
+```
+function countElements(array){
+  if(array.length){
+    return 1 + countElements(array.slice(1))
+  } else {
+    return 0;
+  }
+};
+console.log(countElements([1,2,3,4,5,6]));
+```
+
+
+6.  A palindrome is a word or phrase whose spelling is the same either direction (e.g., racecar). Write a recursive algorithm to determine if a given word or phrase is a palindrome.
+
+```
+function palindrome(string) {        
+   if (string.length === 0 || string.length === 1){          
+       return true;      
+    }
+              
+   if (string[0] === string[string.length - 1]){          
+     return palindrome( string.slice(1, string.length - 1) );       
+   }
+          
+  return false;  
+};
+
+//console.log(palindrome("monday"));
+console.log(palindrome("hannah"));
+```
+
+
+
+7.  Google Easter Egg: Google the term "recursion". Google will prompt you with "Did you mean:  **recursion**". Explain why this behavior exhibits properties of recursion.
+
+The search result is the search term itself which is somewhat similar to recursion because it's "calling" itself.
